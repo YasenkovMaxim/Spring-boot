@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
 @ControllerAdvice
-public class CastomExceptionHandler {
+public class CustomExceptionHandler {
 
     @ExceptionHandler(value ={Exception.class})
     public ModelAndView exceptionHandler(Exception e){ // более глобальный на случай выпадения ошибок которые не обрабтаны другими методами
