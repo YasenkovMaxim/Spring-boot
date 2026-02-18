@@ -2,16 +2,20 @@ package com.maxim.controller;
 
 import com.maxim.model.User;
 import com.maxim.model.dto.UserCreateDto;
+import com.maxim.model.dto.UserUpdateDto;
 import com.maxim.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -58,5 +62,17 @@ public class UserController {
                 .buildAndExpand(user.getId()).toUri();
 
         return ResponseEntity.created(location).body(user);
+    }
+
+    @PutMapping
+    public ResponseEntity<HttpStatus> upDateUser(@RequestBody UserUpdateDto userDto) {
+        userService.upDate(userDto);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<User> deleteUser(@PathVariable("id") Integer id) {
+        userService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

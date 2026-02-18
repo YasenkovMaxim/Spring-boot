@@ -2,6 +2,7 @@ package com.maxim.service;
 
 import com.maxim.model.User;
 import com.maxim.model.dto.UserCreateDto;
+import com.maxim.model.dto.UserUpdateDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -120,5 +121,12 @@ public class UserService {
         user.setCreated(Instant.now());
         user.setUpdated(Instant.now());
         return user;
+    }
+
+    public void delete(Integer id){
+
+    }
+    public void upDate(UserUpdateDto userUpdateDto){
+
     }
 }
