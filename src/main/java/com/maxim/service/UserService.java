@@ -1,16 +1,17 @@
 package com.maxim.service;
 
 import com.maxim.model.User;
+import com.maxim.model.dto.UserCreateDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.function.Function;
 
 @Service
@@ -106,5 +107,18 @@ public class UserService {
                 return null;
             }
         };  //TODO:
+    }
+
+
+    public User save(UserCreateDto userDto) {
+        User user = new User();
+        user.setId(new Random().nextInt(10, 1000));
+        user.setAge(userDto.getAge());
+        user.setFirstName(userDto.getFirstName());
+        user.setLastName(userDto.getLastName());
+        user.setEmail(userDto.getEmail());
+        user.setCreated(Instant.now());
+        user.setUpdated(Instant.now());
+        return user;
     }
 }
