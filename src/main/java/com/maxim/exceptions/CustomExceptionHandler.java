@@ -6,6 +6,8 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import java.io.FileNotFoundException;
+
 @ControllerAdvice
 public class CustomExceptionHandler {
 
@@ -28,9 +30,15 @@ public class CustomExceptionHandler {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(FileUploadException.class)
-    public ResponseEntity<String> FileUploadExceptionExceptionHandler (FileUploadException e) {
+    @ExceptionHandler(CustomFileException.class)
+    public ResponseEntity<String> FileUploadExceptionExceptionHandler (CustomFileException e) {
         System.out.println("ExceptionHadler: " + e);
         return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(FileNotFoundException.class)
+    public ResponseEntity<String> FileNotFoundExceptionHandler (FileNotFoundException e) {
+        System.out.println("ExceptionHadler: " + e);
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
     }
 }
