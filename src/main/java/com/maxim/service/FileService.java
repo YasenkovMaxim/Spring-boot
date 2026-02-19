@@ -6,6 +6,7 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
@@ -45,6 +46,17 @@ public class FileService {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public boolean deleteFile(String filename) throws CustomFileException, FileNotFoundException {
+        Path path = ROOT_FILE_PATH.resolve(filename);
+
+        File file = new File(path.toUri());
+
+        if (file.exists()) {
+            return file.delete();
+        }
+        throw new FileNotFoundException();
     }
 }
 
