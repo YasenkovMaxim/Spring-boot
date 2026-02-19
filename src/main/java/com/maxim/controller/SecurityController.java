@@ -1,11 +1,9 @@
 package com.maxim.controller;
 
-import com.maxim.exceptions.SecurityNotFound;
 import com.maxim.model.dto.RequestRegistrationDTO;
 import com.maxim.model.dto.UserResponse;
 import com.maxim.service.SecurityService;
 import jakarta.validation.Valid;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
