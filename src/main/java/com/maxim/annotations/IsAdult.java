@@ -3,7 +3,6 @@ package com.maxim.annotations;
 import com.maxim.service.validation.IsAdultValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
-
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
