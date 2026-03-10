@@ -10,6 +10,6 @@ public class Dbconfig {
 
     @Bean
     public EntityManagerFactory entityManagerFactory() {
-        return Persistence.createEntityManagerFactory("");
+        return Persistence.createEntityManagerFactory("default");
     }
 }

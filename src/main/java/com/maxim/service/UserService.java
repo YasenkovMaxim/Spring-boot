@@ -3,6 +3,8 @@ package com.maxim.service;
 import com.maxim.model.User;
 import com.maxim.model.dto.UserCreateDto;
 import com.maxim.model.dto.UserUpdateDto;
+import com.maxim.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -17,11 +19,16 @@ import java.util.function.Function;
 
 @Service
 public class UserService {
+    private final UserRepository userRepository;
+
+    @Autowired
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
 
     public Optional<User> getUserById(Integer id) {
-        User user = new User();
-        user.setId(id);
-        return Optional.ofNullable(user); //TODO:
+        return Optional.ofNullable(userRepository.findUserById(id));
     }
 
     public Page<User> getAllUsers(Pageable pageable) {
